@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  web:
+    build: "./presentation/web"
+    ports:
+      - 3000:3000
+    volumes:
+      - /app/node_modules
+      - ./presentation/web:/app
+    command:
+      - npm
+      - run
+      - dev
+    stdin_open: true
+
+  server:
+    build: "./app"
+    ports:
+    - 5000:5000
+    volumes:
+      - ./app:/app/
+    environment:
+      - FLASK_CONFIGURATION=local-docker
+      - FLASK_DEBUG=True
+      - UWSGI_AUTORELOAD=1
+    stdin_open: true
+
+  db:
+    image: postgres:9.6
+    ports:
+    - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres-user
+      - POSTGRES_PASSWORD=password
+    container_name: postgres-neil-db
+    volumes:
+      - local_db/:/var/lib/postgresql/data
+
+volumes:
+  local_db:
+    external: true

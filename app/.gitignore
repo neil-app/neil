@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+*.pyc
+backend/__pycache__
+.envrc
+
