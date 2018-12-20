@@ -31,8 +31,8 @@ services:
     ports:
     - 5432:5432
     environment:
-      - POSTGRES_USER=postgres-user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword1234
     container_name: postgres-neil-db
     volumes:
       - local_db/:/var/lib/postgresql/data
