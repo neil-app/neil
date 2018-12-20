@@ -1,10 +1,13 @@
 from flask_marshmallow import Marshmallow
-
+from flask_marshmallow.fields import fields
 
 ma = Marshmallow()
 
 
 class ModelSchema(ma.ModelSchema):
+    created_at = fields.DateTime('%Y/%m/%d')
+    updated_at = fields.DateTime('%Y/%m/%d')
+
     def __init__(self, *args, **kwargs):
         include = kwargs.get('include', [])
         exclude = kwargs.get('exclude', [])
