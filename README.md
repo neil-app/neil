@@ -1,9 +1,19 @@
 # neil
 
-## 環境変数
-`.envrc`で管理
-- clone後の初回のみ
-    - `$ cp .envrc.sample .envrc`
+## 初回
+- `$ cp .envrc.sample .envrc`
+- `$ docker-compose build`
+- ToDo db create(一旦手動)
+
+## 起動
+- frontend, backend, db起動
+    - `$ docker-compose up`
+- frontend起動
+    - `$ make web`
+- backend起動
+    - `$ make web_backend`
+- db起動
+    - `$ docker-compose up db`
 
 ## migration
 `app/`で行う
@@ -13,3 +23,4 @@
     - `$ flask db upgrade`
 - migrationのrollback
     - `$ flask db downgrade`
+
