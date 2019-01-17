@@ -28,7 +28,7 @@
               </div>
               <div class="field is-grouped is-grouped-right field-submit">
                 <div class="control">
-                  <button class="button is-primary" @click="submit()" type="submit">
+                  <button class="button is-primary" type="submit">
                     登録
                   </button>
                 </div>
@@ -63,7 +63,6 @@ export default {
     },
     async submit() {
       try {
-        console.log(this.$axios)
         await this.$axios.post(`/api/users`, {
           name: this.name,
           email: this.email,
