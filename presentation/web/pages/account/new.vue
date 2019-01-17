@@ -54,7 +54,7 @@ export default {
   async asyncData({ app, error }) {},
   head() {
     return {
-      title: "会社登録",
+      title: "アカウント登録",
     }
   },
   methods: {
