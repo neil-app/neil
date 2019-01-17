@@ -1,5 +1,7 @@
 import json
 from flask import Flask, session, g, request, render_template
+from flask_cors import CORS
+
 
 def create_app():
     app = Flask(__name__)
@@ -7,6 +9,7 @@ def create_app():
     return app
 
 app = create_app()
+CORS(app, send_wildcard=app.debug)
 
 @app.before_request
 def before_request():
