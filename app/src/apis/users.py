@@ -25,3 +25,16 @@ class UsersUserId(Resource):
         if not user:
             return {'message': 'user not found'}, 404
         return {'user': UserSchema().dump(user).data}
+
+    def put(self, user_id):
+        user = g.session.query(User).get(user_id)
+        data = request.get_json()
+        if 'application/json' not in request.headers['Content-Type']:
+            return {'message': 'リクエストが不正です'}, 400
+        elif not user:
+            return {'message': 'user not found'}, 404
+        elif not (data.get('name') and data.get('email')):
+            return {'message': 'dataが不正です'}, 401
+        user.name = data['name']
+        user.email = data['email']
+        return Response()

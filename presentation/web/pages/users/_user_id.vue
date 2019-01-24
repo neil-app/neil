@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       isEdit: false,
-      phoneNumber: "09012345",
+      phoneNumber: "12345",
       password: "",
     }
   },
@@ -85,6 +85,7 @@ export default {
       let userId = parseInt(params.user_id)
       const { data } = await app.$axios.get(`/api/users/${userId}`)
       return {
+        userId: userId,
         user: data.user,
       }
     } catch (err) {
@@ -95,11 +96,21 @@ export default {
       }
     }
   },
+  computed: {
+    name: function() {
+      return this.user.name
+    }
+  },
   methods: {
     edit() {
       this.isEdit = true
     },
     update() {
+      console.log(111111111)
+      this.$axios.put(`/api/users/${this.userId}`, {
+         name: this.user.name,
+         email: this.user.email,
+    })
       this.isEdit = false
     },
   }
