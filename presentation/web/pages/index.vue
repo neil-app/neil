@@ -1,16 +1,37 @@
 <template>
-  <div>
-    <iframe v-for="image in images" :key="image.id" :src="image.image_url"></iframe>
+  <div class="sections">
+    <div class="container">
+      <div class="columns is-multiline">
+        <div class="column is-half" v-for="user in users" :key="user.id">
+          <div class="card">
+            <div class="card-content">
+              <div>
+                  {{ user.name }}
+                  {{ user.email }}
+                <a href="#" class="button is-normal" @click="deleteUser(user)">削除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+//   data() {
+//     return {
+//       isEdit: false,
+//       phoneNumber: "",
+//       password: "",
+//     }
+//   },
   async asyncData({app, error}) {
     try {
-      const { data } = await app.$axios.get(`/api/images`)
+      const { data } = await app.$axios.get(`/api/users`)
       return {
-        images: data.images,
+        users: data.users,
       }
     } catch (err) {
       return {
@@ -19,5 +40,18 @@ export default {
       }
     }
   },
+//   computed: {
+//     name: function() {
+//       return this.user.name
+//     }
+//   },
+  methods: {
+    deleteUser(user) {
+      this.$axios.delete(`/api/users/${user.id}`)
+    },
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
