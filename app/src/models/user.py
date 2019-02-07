@@ -3,7 +3,7 @@ import bcrypt
 from enum import Enum
 from datetime import datetime
 from sqlalchemy_utils import ChoiceType
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from ..database import db
 from .types.user_type import UserType
 
@@ -18,6 +18,7 @@ class User(db.Model):
     password = Column(String(255), nullable=False)
     token = Column(String(255), nullable=False)
     user_type = Column(ChoiceType(UserType, impl=Integer()), default=0, nullable=False)
+    disabled = Column(Boolean, default=False)
     created_at = Column(DateTime, nullable=False, default=datetime.now)
     updated_at = Column(DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 

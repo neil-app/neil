@@ -6,6 +6,13 @@ from ..schemas import UserSchema
 
 class Users(Resource):
 
+    def get(self):
+        users = g.session.query(User).filter(
+            User.disabled.is_(False)
+        ).all()
+        return {'users': UserSchema().dump(users, many=True).data}
+
+
     def post(self):
         data = request.get_json()
         if 'application/json' not in request.headers['Content-Type']:
@@ -37,4 +44,11 @@ class UsersUserId(Resource):
             return {'message': 'dataが不正です'}, 401
         user.name = data['name']
         user.email = data['email']
+        return Response()
+
+    def delete(self, user_id):
+        user = g.session.query(User).get(user_id)
+        if not user:
+            return {'message': 'user not found'}, 404
+        user.disabled = True
         return Response()

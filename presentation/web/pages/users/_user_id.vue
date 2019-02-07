@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       isEdit: false,
-      phoneNumber: "12345",
+      phoneNumber: "1234",
       password: "",
     }
   },
@@ -106,7 +106,6 @@ export default {
       this.isEdit = true
     },
     update() {
-      console.log(111111111)
       this.$axios.put(`/api/users/${this.userId}`, {
          name: this.user.name,
          email: this.user.email,
