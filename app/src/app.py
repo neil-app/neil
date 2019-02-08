@@ -1,11 +1,12 @@
 import json
 from flask import Flask, session, g, request, render_template
 from flask_cors import CORS
+from  .config import configure_app
 
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('src.config.Config')
+    configure_app(app)
     return app
 
 app = create_app()
