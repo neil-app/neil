@@ -9,5 +9,5 @@ class Images(Resource):
 
     def get(self):
         images = g.session.query(Image).all()
-        images = random.sample(images, 5)
+        images = random.sample(images, 10)
         return {'images': ImageSchema().dump(images, many=True).data}
