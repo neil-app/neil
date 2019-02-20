@@ -11,8 +11,7 @@
       <a href="http://www.aoyama-eye-clinic.com/cl_info/">About</a>
       <a href="https://www.shuminoengei.jp/m-pc/a-page_p_detail/target_plant_code-350">Works</a>
       <a href="https://beauty.hotpepper.jp/kr/slnH000286231/blog/W000225989/">Blog</a>
-      <a href="https://yumeg.com/shopdetail/000000001572/">Shop</a>
-      <a href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000286231&staffId=W000225989">Contact</a>
+      <nuxt-link :to="{path: `/contact`}">Contact</nuxt-link>
     </div>
     <div class="images">
       <img v-for="image in images" :key="image.id" :src="image.image_url" class="image">
