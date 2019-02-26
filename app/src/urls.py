@@ -2,7 +2,7 @@ import json
 from flask import make_response
 from flask_restful import Api
 from . import app
-from .apis import Health, Users, UsersUserId, Images
+from .apis import Health, Users, UsersUserId, Images, Profile
 
 api = Api(app)
 
@@ -17,3 +17,4 @@ api.add_resource(Health, '/api/health')
 api.add_resource(Users, '/api/users')
 api.add_resource(UsersUserId, '/api/users/<int:user_id>')
 api.add_resource(Images, '/api/images')
+api.add_resource(Profile,'/api/users/<int:user_id>/profile')

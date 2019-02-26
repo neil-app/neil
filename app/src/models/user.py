@@ -15,6 +15,7 @@ class User(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False)
+    birh_place = Column(String(255))
     password = Column(String(255), nullable=False)
     token = Column(String(255), nullable=False)
     user_type = Column(ChoiceType(UserType, impl=Integer()), default=0, nullable=False)
