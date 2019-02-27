@@ -19,6 +19,7 @@ class User(db.Model):
     token = Column(String(255), nullable=False)
     user_type = Column(ChoiceType(UserType, impl=Integer()), default=0, nullable=False)
     disabled = Column(Boolean, default=False)
+    birh_place = Column(String(255))
     created_at = Column(DateTime, nullable=False, default=datetime.now)
     updated_at = Column(DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 
