@@ -5,4 +5,4 @@ from ..models import User
 class UserSchema(ModelSchema):
     class Meta:
         model = User
-        exclude = ['password']
+        exclude = ['password', 'images', 'magazines', 'histories', 'companies']
