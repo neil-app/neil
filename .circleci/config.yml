@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  server_test:
+    docker:
+      - image: circleci/python:3.6.2
+        environment:
+          TZ: Asia/Tokyo
+          FLASK_CONFIGURATION: test
+      - image: circleci/postgres:9.6-postgis
+        environment:
+          TZ: Asia/Tokyo
+          POSTGRES_DB: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: mysecretpassword1234
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv .venv
+            source .venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - run:
+          name: run lint
+          command: |
+            source .venv/bin/activate
+            cd app
+            python manage.py lint
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
